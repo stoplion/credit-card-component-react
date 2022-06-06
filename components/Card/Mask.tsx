@@ -1,23 +1,23 @@
-import { MonoSpaced } from './elements';
-import { formatCCNumbers } from './formatCCNumbers';
+import { MonoSpaced } from '.';
+// import { formatCCNumbers } from '../../utils/formatCCNumbers';
 
 export function Mask({
-  characters,
-  maskInput,
+  isMasked,
+  children,
 }: {
-  characters: string;
-  maskInput: boolean;
+  isMasked: boolean;
+  children: string;
 }) {
-  if (maskInput) {
-    const maskedChars = characters
+  if (isMasked) {
+    const maskedChars = children
       .split('')
       .map(() => {
         return '•';
       })
       .join('');
 
-    return <MonoSpaced>{formatCCNumbers(maskedChars)}</MonoSpaced>;
+    return <MonoSpaced>{maskedChars}</MonoSpaced>;
   }
 
-  return <MonoSpaced>{formatCCNumbers(characters)}</MonoSpaced>;
+  return <MonoSpaced>{children}</MonoSpaced>;
 }

@@ -1,8 +1,11 @@
-import { Card } from '../components/Card';
+import { CardComponent } from '../components/Card';
 import Head from 'next/head';
 import type { NextPage } from 'next';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
+  const [isMasked, toggleIsMasked] = useState(true);
+
   return (
     <>
       <Head>
@@ -12,13 +15,20 @@ const Home: NextPage = () => {
       </Head>
 
       <main id='app'>
-        <Card
-          expiry='07/25'
-          cvv='109'
-          fullName='Ernelus Satia'
-          logoUrl='/heartykitchens.svg'
-          providerLogo='/Visa.svg'
-        />
+        <div
+          onMouseOver={() => toggleIsMasked(false)}
+          onMouseLeave={() => toggleIsMasked(true)}
+        >
+          <CardComponent
+            cvv='109'
+            number='4124214091289090'
+            expiry='07/25'
+            fullName='Ernelus Satia'
+            isMasked={isMasked}
+            logoUrl='/heartykitchens.svg'
+            providerLogo='/Visa.svg'
+          />
+        </div>
       </main>
     </>
   );

@@ -1,18 +1,27 @@
-import { Label, NumberWrapper } from './elements';
+import { CopyToClipboard, Label } from '.';
 
 import { Mask } from './Mask';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  padding-bottom: 3rem;
+`;
 
 export function NameAndNumber({
   fullName,
-  maskInput,
+  isMasked,
+  number,
 }: {
   fullName: string;
-  maskInput: boolean;
+  number: string;
+  isMasked: boolean;
 }) {
   return (
-    <NumberWrapper>
+    <Wrapper>
       <Label>{fullName}</Label>
-      <Mask characters='4124214091289090' maskInput={maskInput} />
-    </NumberWrapper>
+      <CopyToClipboard>
+        <Mask isMasked={isMasked}>{number}</Mask>
+      </CopyToClipboard>
+    </Wrapper>
   );
 }
